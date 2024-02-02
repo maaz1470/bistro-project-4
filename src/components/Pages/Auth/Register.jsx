@@ -4,10 +4,11 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Register = () => {
 
-    const {user} = useContext(AuthContext)
+    const {user, userSignUp} = useContext(AuthContext)
     console.log(user)
 
     const handleSubmit = (e) => {
+        e.preventDefault();
 
         const form = e.target;
         const name = form.name.value;
@@ -15,7 +16,9 @@ const Register = () => {
         const photo_url = form.photo_url.value;
         const password = form.password.value;
 
-
+        userSignUp(email, password).then(result => {
+            console.log(result.user)
+        })
 
     }
 
